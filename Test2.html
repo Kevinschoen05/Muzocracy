@@ -1,21 +1,22 @@
-<head>
-    <meta charset="utf-8">
+<html>  
+   <head>
+        <meta charset="utf-8">
 
-    <title>Muzocracy</title>
-    <!--google font-->
-    <link href="https://fonts.googleapis.com/css?family=Faster+One" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <!-- jQuery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <!-- Latest compiled JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <!--Font Awesome-->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
-  </head>
-
+        <title>Muzocracy</title>
+        <!--google font-->
+        <link href="https://fonts.googleapis.com/css?family=Faster+One" rel="stylesheet">
+        <link rel="stylesheet" href="style.css">
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <!--Font Awesome-->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
+    </head>
+  <div class="container-fluid">
   <body>
     
     <table class="table">
@@ -30,9 +31,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-
-            </tr>
+            
         </tbody>    
     </table>
     
@@ -41,7 +40,7 @@
       
     <script>
         var table = document.querySelector("tbody");
-        var requestURL = "https://raw.githubusercontent.com/Kevinschoen05/Muzocracy/master/data/spotify_playlist.json";
+        var requestURL = "https://raw.githubusercontent.com/Kevinschoen05/Muzocracy/feature/UI/data/spotify_playlist.json";
         var request = new XMLHttpRequest();
         request.open('GET', requestURL);
         request.responseType = 'json';
@@ -53,12 +52,18 @@
         };
         function populateTable(jsonObj){
             var songs = jsonObj["songs"];
+            var tableBody = document.querySelector("tbody")
             for(var i=0; i<songs.length; i++)
             {
-                console.log("test")
-            }
+                var tableRowArtist = document.createElement("tr");
+                tableRowArtist.textContent = songs[i]["Artist"];
+                tableBody.appendChild(tableRowArtist);
+
+
             };
-
-
+            
+        }
     </script>
   </body>
+  </div>
+</html> 
