@@ -1,4 +1,5 @@
-[
+{
+  "songs":[
   {
     "Artist": "Travis Scott",
     "Track Title": "STARGAZING",
@@ -200,3 +201,4 @@
     "SpotifyID": "1XRgIKC5TPwo7nWGyKqgG0"
   }
 ]
+}
