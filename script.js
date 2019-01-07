@@ -1,3 +1,9 @@
+import * as mdc from 'material-components-web';
+
+const username = new MDCTextField(document.querySelector('.username'));
+const password = new MDCTextField(document.querySelector('.password'));
+
+
 var playlist = {
 
   songs: [{
