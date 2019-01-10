@@ -1,14 +1,4 @@
-
-.username,
-.password {
-  display: block;
-  width: 300px;
-  margin: 20px auto;
+h1{
+  background-color:black;
+  color: 1db954;
 }
-
-table {
-    margin: 25px;
-    background-color: rgb(240,240,240);
-    font-family: arial, sans-serif;
-    font-size: 14px;
-  }

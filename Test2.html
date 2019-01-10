@@ -7,27 +7,34 @@
         <link href="https://fonts.googleapis.com/css?family=Faster+One" rel="stylesheet">
         <link rel="stylesheet" href="style.css">
         <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
         <!-- jQuery library -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <!-- Latest compiled JavaScript -->
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <!--Font Awesome-->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <!-- Font Awesome -->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
         <link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
+        <!-- Local Stylesheet -->
+        <link rel="stylesheet" href="style.css">
+
     </head>
   <div class="container-fluid">
   <body>
-    
-    <table class="table">
-        <thead>
+    <div>
+        <h1 class="text-center">Current Playlist</h1>
+    </div>
+    <table class="table table-dark">
+        <thead id="tableHeader">
             <tr>
+                
                 <th>Artist</th>
                 <th>Track Title</th>
                 <th>Album</th>
                 <th>ISRC</th>
                 <th>Length</th>
                 <th>SpotifyID</th>
+                <th>Vote Count</th>
             </tr>
         </thead>
         <tbody id="tableBody">
@@ -46,7 +53,7 @@
         request.send();
         request.onload = function() {
             var playlist = request.response;
-            console.log(playlist);
+            //console.log(playlist);
           populateTable(playlist);
         };
         
@@ -63,7 +70,9 @@
                 var tableISRC = document.createElement("td")
                 var tableLength = document.createElement("td");
                 var tableSpotifyID = document.createElement("td");
+                var tableVoteCount = document.createElement("td");
 
+                tableVoteCount.textContent = 0;
                 tableArtist.textContent = songs[i]["Artist"];
                 tableTrackTitle.textContent = songs[i]["Track Title"];
                 tableAlbum.textContent = songs[i]["Album"];
@@ -71,19 +80,25 @@
                 tableLength.textContent = songs[i]["Length"];
                 tableSpotifyID.textContent = songs[i]["SpotifyID"]
 
+                
                 tableRow.appendChild(tableArtist);
                 tableRow.appendChild(tableTrackTitle);
                 tableRow.appendChild(tableAlbum);
                 tableRow.appendChild(tableISRC);
                 tableRow.appendChild(tableLength);
                 tableRow.appendChild(tableSpotifyID);
+                tableRow.appendChild(tableVoteCount);
 
                 tableBody.appendChild(tableRow);
                 
             };
-           
-
-            
+            tableVoteCount.setAttribute("id", "VoteCount");
+            tableArtist.setAttribute("id", "Artist");
+            tableTrackTitle.setAttribute("id", "trackTitle");
+            tableAlbum.setAttribute("id","Album");
+            tableISRC.setAttribute("id", "ISRC");
+            tableLength.setAttribute("id", "Length");
+            tableSpotifyID.setAttribute("id", "SpotifyID")
         }
     </script>
   </body>
