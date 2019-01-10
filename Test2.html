@@ -35,6 +35,7 @@
                 <th>Length</th>
                 <th>SpotifyID</th>
                 <th>Vote Count</th>
+                <th>Vote</th>
             </tr>
         </thead>
         <tbody id="tableBody">
@@ -71,6 +72,9 @@
                 var tableLength = document.createElement("td");
                 var tableSpotifyID = document.createElement("td");
                 var tableVoteCount = document.createElement("td");
+                var voteIcon = document.createElement("td");
+                var voteIconUp = document.createElement("i");
+                var voteIconDown = document.createElement("i");
 
                 tableVoteCount.textContent = 0;
                 tableArtist.textContent = songs[i]["Artist"];
@@ -79,7 +83,15 @@
                 tableISRC.textContent = songs[i]["ISRC"];
                 tableLength.textContent = songs[i]["Length"];
                 tableSpotifyID.textContent = songs[i]["SpotifyID"]
-
+                
+                voteIcon.appendChild(voteIconUp);
+                voteIconUp.setAttribute("class",  "fa fa-arrow-circle-up")
+                voteIconUp.setAttribute("id", "upvoteArrow")
+                
+                voteIcon.appendChild(voteIconDown);
+                voteIconDown.setAttribute("class", "fa fa-arrow-circle-down");
+                voteIconDown.setAttribute("id", "downvoteArrow");
+                
                 
                 tableRow.appendChild(tableArtist);
                 tableRow.appendChild(tableTrackTitle);
@@ -88,6 +100,9 @@
                 tableRow.appendChild(tableLength);
                 tableRow.appendChild(tableSpotifyID);
                 tableRow.appendChild(tableVoteCount);
+                tableRow.appendChild(voteIcon);
+                
+                
 
                 tableBody.appendChild(tableRow);
                 
