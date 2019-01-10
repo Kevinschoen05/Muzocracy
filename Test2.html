@@ -30,8 +30,7 @@
                 <th>SpotifyID</th>
             </tr>
         </thead>
-        <tbody>
-            
+        <tbody id="tableBody">
         </tbody>    
     </table>
     
@@ -48,19 +47,42 @@
         request.onload = function() {
             var playlist = request.response;
             console.log(playlist);
-            populateTable(playlist);
+          populateTable(playlist);
         };
+        
+
         function populateTable(jsonObj){
-            var songs = jsonObj["songs"];
-            var tableBody = document.querySelector("tbody")
-            for(var i=0; i<songs.length; i++)
+            var songs = jsonObj["songs"]; 
+            var tableBody = document.querySelector("tbody");
+            for(var i=0; i < songs.length; i++)
             {
-                var tableRowArtist = document.createElement("tr");
-                tableRowArtist.textContent = songs[i]["Artist"];
-                tableBody.appendChild(tableRowArtist);
+                var tableRow = document.createElement("tr");
+                var tableArtist = document.createElement("td");
+                var tableTrackTitle = document.createElement("td");
+                var tableAlbum = document.createElement("td");
+                var tableISRC = document.createElement("td")
+                var tableLength = document.createElement("td");
+                var tableSpotifyID = document.createElement("td");
 
+                tableArtist.textContent = songs[i]["Artist"];
+                tableTrackTitle.textContent = songs[i]["Track Title"];
+                tableAlbum.textContent = songs[i]["Album"];
+                tableISRC.textContent = songs[i]["ISRC"];
+                tableLength.textContent = songs[i]["Length"];
+                tableSpotifyID.textContent = songs[i]["SpotifyID"]
 
+                tableRow.appendChild(tableArtist);
+                tableRow.appendChild(tableTrackTitle);
+                tableRow.appendChild(tableAlbum);
+                tableRow.appendChild(tableISRC);
+                tableRow.appendChild(tableLength);
+                tableRow.appendChild(tableSpotifyID);
+
+                tableBody.appendChild(tableRow);
+                
             };
+           
+
             
         }
     </script>
