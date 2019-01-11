@@ -69,3 +69,4 @@ function populateTable(jsonObj){
     tableLength.setAttribute("id", "Length");
     tableSpotifyID.setAttribute("id", "SpotifyID")
 }
+   

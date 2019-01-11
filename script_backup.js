@@ -89,22 +89,3 @@ var handlers = {
   }
   
 };
-
-var view = {
-  displaySongs: function(){
-    
-    songsTable = document.querySelector("table")            
-    songsTable.innerHTML = "";                          
-    for(var i = 0; i < playlist.playlistOrder.length; i++){   
-
-      playlist.getPlaylistOrder();                  
-      var songsLi = document.createElement("tr")    
-      var songsWithAttributes = "";                 
-
-      songsWithAttributes = (playlist.playlistOrder[i].title + " "+  playlist.playlistOrder[i].artist + " " +  playlist.playlistOrder[i].album + " "+ playlist.playlistOrder[i].votes)                      
-
-      songsLi.textContent = songsWithAttributes;    
-      songsTable.appendChild(songsLi);
-    }
-  }
-};
