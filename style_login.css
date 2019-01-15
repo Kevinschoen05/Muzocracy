@@ -95,6 +95,7 @@ body {
   -moz-osx-font-smoothing: grayscale;      
 }
 
-.login_button {
-    color:1db954
+#login_button {
+    background-color: 1db954 !important;
+    color: white;
 }
