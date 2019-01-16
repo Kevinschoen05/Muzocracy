@@ -25,8 +25,8 @@ function populateTable(jsonObj){
         var tableSpotifyID = document.createElement("td");
         var tableVoteCount = document.createElement("td");
         var voteIcon = document.createElement("td");
-        var voteIconUp = document.createElement("i");
-        var voteIconDown = document.createElement("i");
+        var voteIconUp = document.createElement("a");
+        var voteIconDown = document.createElement("a");
 
 
         tableVoteCount.textContent = songs[i]["Votes"];
@@ -38,15 +38,22 @@ function populateTable(jsonObj){
         tableSpotifyID.textContent = songs[i]["SpotifyID"]
         
         voteIcon.appendChild(voteIconUp);
-        voteIconUp.setAttribute("class",  "fa fa-arrow-circle-up")
+        voteIconUp.setAttribute("class",  " btn fa fa-arrow-circle-up")
         voteIconUp.setAttribute("id", "upvoteArrow")
-        
+        voteIconUp.setAttribute("data-toggle", "button")
+        voteIconUp.setAttribute("aria-pressed", "false")
+        voteIconUp.setAttribute("autocomplete", "off")
+
+
         voteIcon.appendChild(voteIconDown);
-        voteIconDown.setAttribute("class", "fa fa-arrow-circle-down");
+        voteIconDown.setAttribute("class", " btn fa fa-arrow-circle-down");
         voteIconDown.setAttribute("id", "downvoteArrow");
-        
+        voteIconDown.setAttribute("data-toggle", "button")
+        voteIconDown.setAttribute("aria-pressed", "false")
+        voteIconDown.setAttribute("autocomplete", "off")
 
         
+
         tableRow.appendChild(tableArtist);
         tableRow.appendChild(tableTrackTitle);
         tableRow.appendChild(tableAlbum);
