@@ -1,5 +1,5 @@
-<html>  
-   <head>
+<html>
+    <head> 
         <meta charset="utf-8">
 
         <title>Muzocracy</title>
@@ -16,32 +16,19 @@
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
         <link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
         <!-- Local Stylesheet -->
-        <link rel="stylesheet" href="style.css">
-
-    </head>
-  <div class="container-fluid">
-  <body>
-    <script src="script.js"></script>
-    <div>    
-        <h1 class="text-center">Current Playlist</h1>
-    </div>
-    <table class="table table-dark">
-        <thead id="tableHeader">
-            <tr>
-                
-                <th>Artist</th>
-                <th>Track Title</th>
-                <th>Album</th>
-                <th>ISRC</th>
-                <th>Length</th>
-                <th>SpotifyID</th>
-                <th>Vote Count</th>
-                <th>Vote</th>
-            </tr>
-        </thead>
-        <tbody id="tableBody">
-        </tbody>    
-    </table>
-  </body>
-  </div>
-</html> 
+        <link rel="stylesheet" href="style_login.css">
+    </head>   
+   <body>
+        <div class="login-page">
+                <div class="form">
+                  <form class="login-form">
+                    <input type="text" placeholder="username"/>
+                    <input type="password" placeholder="password"/>
+                    <a  id="login_button" class="btn" href="index.html">Login</a>
+                    <p class="message">Not registered? <a href="#">Create an account</a></p>
+                  </form>
+                </div>
+              </div>
+    <script src="script_login.js"></script>
+    </body>
+</html>

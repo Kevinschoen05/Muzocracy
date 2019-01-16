@@ -1,104 +1,79 @@
-var playlist = {
-
-  songs: [{
-    title: "Stargazing",
-    artist: "Travis Scott",
-    album: "ASTROWORLD",
-    votes: 2
-  }, {
-    title: "Sicko Mode",
-    artist: "Travis Scott",
-    album: "ASTROWORLD",
-    votes: 9
-  }, {
-    title: "Carousel",
-    artist: "Travis Scott",
-    album: "ASTROWORLD",
-    votes: 10
-  }],
-  
-   playlistOrder: [{}],
-  
-  displaySongs: function() {
-    this.getPlaylistOrder();
-  },
-
-  addSongs: function(songTitle, songArtist, songAlbum) {
-    this.songs.push({
-      title: songTitle,
-      artist: songArtist,
-      album: songAlbum,
-      votes: 0
-    });
-    this.displaySongs();
-  },
-
-  upvoteSongs: function(songPosition) {
-    this.songs[songPosition].votes++;
-    this.displaySongs();
-  },
-
-  downvoteSongs: function(songPosition) {
-    this.songs[songPosition].votes--;
-    this.displaySongs();
-  },
-
-  getPlaylistOrder: function() {
-    playlistOrder = this.songs.slice().sort(function(a, b) {
-      return (b.votes - a.votes);
-    });
-    this.playlistOrder = playlistOrder;
-    console.log(playlistOrder);
-  }
+var table = document.querySelector("tbody");
+var requestURL = "https://raw.githubusercontent.com/Kevinschoen05/Muzocracy/feature/UI/data/spotify_playlist.json";
+var request = new XMLHttpRequest();
+request.open('GET', requestURL);
+request.responseType = 'json';
+request.send();
+request.onload = function() {
+    var playlist = request.response;
+    //console.log(playlist);
+  populateTable(playlist);
 };
 
-var handlers = { 
-  displaySongs: function(){
-    view.displaySongs();
-  }, 
-  
-  addSongs: function(){
-    var addSongsSongTitleInput = document.getElementById("addSongsSongTitleInput");
-    var addSongsSongArtistInput = document.getElementById("addSongsSongArtistInput");
-    var addSongsSongAlbumInput = document.getElementById("addSongsSongAlbumInput");
-    playlist.addSongs(addSongsSongTitleInput.value, addSongsSongArtistInput.value, addSongsSongAlbumInput.value);
-    addSongsSongTitleInput.value="";
-    addSongsSongArtistInput.value="";
-    addSongsSongAlbumInput.value="";
-    view.displaySongs();
-  },
-  
-  upvoteSongs: function(){
-    var upvoteSongsPositionInput = document.getElementById("upvoteSongsPositionInput");
-    playlist.upvoteSongs(upvoteSongsPositionInput.valueAsNumber);
-    upvoteSongsPositionInput.value ="";
-    view.displaySongs();
-  }, 
-  
-  downvoteSongs: function(){
-    var downvoteSongsPositionInput = document.getElementById("downvoteSongsPositionInput");
-    playlist.downvoteSongs(downvoteSongsPositionInput.valueAsNumber);
-    downvoteSongsPositionInput.value ="";
-    view.displaySongs();
-  }
-  
-};
 
-var view = {
-  displaySongs: function(){
-    
-    songsTable = document.querySelector("table")            
-    songsTable.innerHTML = "";                          
-    for(var i = 0; i < playlist.playlistOrder.length; i++){   
+function populateTable(jsonObj){
+    var songs = jsonObj["songs"]; 
+    var tableBody = document.querySelector("tbody");
+    for(var i=0; i < songs.length; i++)
+    {
+        var tableRow = document.createElement("tr");
+        var tableArtist = document.createElement("td");
+        var tableTrackTitle = document.createElement("td");
+        var tableAlbum = document.createElement("td");
+        var tableISRC = document.createElement("td")
+        var tableLength = document.createElement("td");
+        var tableSpotifyID = document.createElement("td");
+        var tableVoteCount = document.createElement("td");
+        var voteIcon = document.createElement("td");
+        var voteIconUp = document.createElement("a");
+        var voteIconDown = document.createElement("a");
 
-      playlist.getPlaylistOrder();                  
-      var songsLi = document.createElement("tr")    
-      var songsWithAttributes = "";                 
 
-      songsWithAttributes = (playlist.playlistOrder[i].title + " "+  playlist.playlistOrder[i].artist + " " +  playlist.playlistOrder[i].album + " "+ playlist.playlistOrder[i].votes)                      
+        tableVoteCount.textContent = songs[i]["Votes"];
+        tableArtist.textContent = songs[i]["Artist"];
+        tableTrackTitle.textContent = songs[i]["Track Title"];
+        tableAlbum.textContent = songs[i]["Album"];
+        tableISRC.textContent = songs[i]["ISRC"];
+        tableLength.textContent = songs[i]["Length"];
+        tableSpotifyID.textContent = songs[i]["SpotifyID"]
+        
+        voteIcon.appendChild(voteIconUp);
+        voteIconUp.setAttribute("class",  " btn fa fa-arrow-circle-up")
+        voteIconUp.setAttribute("id", "upvoteArrow")
+        voteIconUp.setAttribute("data-toggle", "button")
+        voteIconUp.setAttribute("aria-pressed", "false")
+        voteIconUp.setAttribute("autocomplete", "off")
 
-      songsLi.textContent = songsWithAttributes;    
-      songsTable.appendChild(songsLi);
-    }
-  }
-};
+
+        voteIcon.appendChild(voteIconDown);
+        voteIconDown.setAttribute("class", " btn fa fa-arrow-circle-down");
+        voteIconDown.setAttribute("id", "downvoteArrow");
+        voteIconDown.setAttribute("data-toggle", "button")
+        voteIconDown.setAttribute("aria-pressed", "false")
+        voteIconDown.setAttribute("autocomplete", "off")
+
+        
+
+        tableRow.appendChild(tableArtist);
+        tableRow.appendChild(tableTrackTitle);
+        tableRow.appendChild(tableAlbum);
+        tableRow.appendChild(tableISRC);
+        tableRow.appendChild(tableLength);
+        tableRow.appendChild(tableSpotifyID);
+        tableRow.appendChild(tableVoteCount);
+        tableRow.appendChild(voteIcon);
+        
+        
+
+        tableBody.appendChild(tableRow);
+        
+    };
+    tableVoteCount.setAttribute("id", "VoteCount");
+    tableArtist.setAttribute("id", "Artist");
+    tableTrackTitle.setAttribute("id", "trackTitle");
+    tableAlbum.setAttribute("id","Album");
+    tableISRC.setAttribute("id", "ISRC");
+    tableLength.setAttribute("id", "Length");
+    tableSpotifyID.setAttribute("id", "SpotifyID")
+}
+   
