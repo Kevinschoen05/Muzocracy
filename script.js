@@ -1,3 +1,9 @@
+/*
+    Initial work to populate the playlist table from a remote json file containing
+    a dummy Spotify playlist. 
+*/
+
+//This section gets the remote playist stored in our Github and returns it as a json objectt and calls the populate table function
 var table = document.querySelector("tbody");
 var requestURL = "https://raw.githubusercontent.com/Kevinschoen05/Muzocracy/feature/login/data/spotify_playlist.json";
 var request = new XMLHttpRequest();
@@ -10,12 +16,13 @@ request.onload = function() {
   populateTable(playlist);
 };
 
-
+//populate table function populates the empty html table in the index.html file dynamically from the json object returned above
 function populateTable(jsonObj){
     var songs = jsonObj["songs"]; 
     var tableBody = document.querySelector("tbody");
     for(var i=0; i < songs.length; i++)
     {
+        //dynamically creating the html elements necessary to populate the table
         var tableRow = document.createElement("tr");
         var tableArtist = document.createElement("td");
         var tableTrackTitle = document.createElement("td");
@@ -28,7 +35,7 @@ function populateTable(jsonObj){
         var voteIconUp = document.createElement("a");
         var voteIconDown = document.createElement("a");
 
-
+        //filling the html elements created above with the corresponding json object values
         tableVoteCount.textContent = songs[i]["Votes"];
         tableArtist.textContent = songs[i]["Artist"];
         tableTrackTitle.textContent = songs[i]["Track Title"];
@@ -37,6 +44,7 @@ function populateTable(jsonObj){
         tableLength.textContent = songs[i]["Length"];
         tableSpotifyID.textContent = songs[i]["SpotifyID"]
         
+        //this section is strictly controlling the placement and button functionality of the green upvote arrow
         voteIcon.appendChild(voteIconUp);
         voteIconUp.setAttribute("class",  " btn fa fa-arrow-circle-up")
         voteIconUp.setAttribute("id", "upvoteArrow")
@@ -44,7 +52,7 @@ function populateTable(jsonObj){
         voteIconUp.setAttribute("aria-pressed", "false")
         voteIconUp.setAttribute("autocomplete", "off")
 
-
+        //this section is strictly controlling the placement and button functionality of the red downvote arrow
         voteIcon.appendChild(voteIconDown);
         voteIconDown.setAttribute("class", " btn fa fa-arrow-circle-down");
         voteIconDown.setAttribute("id", "downvoteArrow");
@@ -53,7 +61,7 @@ function populateTable(jsonObj){
         voteIconDown.setAttribute("autocomplete", "off")
 
         
-
+        //this section appends all of the html elements to a table row allowing a playlist of any size to be created dynamically
         tableRow.appendChild(tableArtist);
         tableRow.appendChild(tableTrackTitle);
         tableRow.appendChild(tableAlbum);
@@ -64,10 +72,11 @@ function populateTable(jsonObj){
         tableRow.appendChild(voteIcon);
         
         
-
+        //this section appends all of the "n" number of rows to the table body
         tableBody.appendChild(tableRow);
         
     };
+    //this section sets the id attribute to specific HTML elements created dynamically above so they can be styled/modified in the styl.css file
     tableVoteCount.setAttribute("id", "VoteCount");
     tableArtist.setAttribute("id", "Artist");
     tableTrackTitle.setAttribute("id", "trackTitle");
