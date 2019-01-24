@@ -1,5 +1,5 @@
 var table = document.querySelector("tbody");
-var requestURL = "https://raw.githubusercontent.com/Kevinschoen05/Muzocracy/feature/UI/data/spotify_playlist.json";
+var requestURL = "https://raw.githubusercontent.com/Kevinschoen05/Muzocracy/feature/login/data/spotify_playlist.json";
 var request = new XMLHttpRequest();
 request.open('GET', requestURL);
 request.responseType = 'json';
