@@ -5,7 +5,7 @@
 
 //This section gets the remote playist stored in our Github and returns it as a json objectt and calls the populate table function
 var table = document.querySelector("tbody");
-var requestURL = "https://raw.githubusercontent.com/Kevinschoen05/Muzocracy/feature/login/data/spotify_playlist.json";
+var requestURL = "https://raw.githubusercontent.com/Kevinschoen05/Muzocracy/feature/playlist/data/spotify_playlist.json";
 var request = new XMLHttpRequest();
 request.open('GET', requestURL);
 request.responseType = 'json';
@@ -14,6 +14,7 @@ request.onload = function() {
     var playlist = request.response;
     //console.log(playlist);
   populateTable(playlist);
+  upvoteSongs(2)
 };
 
 //populate table function populates the empty html table in the index.html file dynamically from the json object returned above
@@ -36,7 +37,7 @@ function populateTable(jsonObj){
         var voteIconDown = document.createElement("a");
 
         //filling the html elements created above with the corresponding json object values
-        tableVoteCount.textContent = songs[i]["Votes"];
+        tableVoteCount.textContent = 0;
         tableArtist.textContent = songs[i]["Artist"];
         tableTrackTitle.textContent = songs[i]["Track Title"];
         tableAlbum.textContent = songs[i]["Album"];
@@ -75,14 +76,25 @@ function populateTable(jsonObj){
         //this section appends all of the "n" number of rows to the table body
         tableBody.appendChild(tableRow);
         
+        //this section sets the id attribute to specific HTML elements created dynamically above so they can be styled/modified in the styl.css file
+        tableVoteCount.setAttribute("id", "Position" + i);
+        tableArtist.setAttribute("id", "Artist");
+        tableTrackTitle.setAttribute("id", "trackTitle");
+        tableAlbum.setAttribute("id","Album");
+        tableISRC.setAttribute("id", "ISRC");
+        tableLength.setAttribute("id", "Length");
+        tableSpotifyID.setAttribute("id", "SpotifyID")
     };
-    //this section sets the id attribute to specific HTML elements created dynamically above so they can be styled/modified in the styl.css file
-    tableVoteCount.setAttribute("id", "VoteCount");
-    tableArtist.setAttribute("id", "Artist");
-    tableTrackTitle.setAttribute("id", "trackTitle");
-    tableAlbum.setAttribute("id","Album");
-    tableISRC.setAttribute("id", "ISRC");
-    tableLength.setAttribute("id", "Length");
-    tableSpotifyID.setAttribute("id", "SpotifyID")
-}
+
+};
    
+function upvoteSongs(songPosition){
+    var songPosition = songPosition;
+    
+    var voteCount = document.getElementById("Position" + songPosition)
+    voteCount.value ++;
+    console.log(voteCount.value);
+
+
+
+};
