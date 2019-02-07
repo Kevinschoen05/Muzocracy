@@ -36,6 +36,7 @@ function userValidation(jsonObj){
             if(password.value == users[i]["Password"]){
                 console.log("login successful");
                 window.location.href = "index.html";
+                break;
             }
         }
         else{
