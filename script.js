@@ -37,7 +37,7 @@ function populateTable(jsonObj){
         var voteIconDown = document.createElement("a");
 
         //filling the html elements created above with the corresponding json object values
-        tableVoteCount.textContent = 0;
+        tableVoteCount.innerHTML = 0;
         tableArtist.textContent = songs[i]["Artist"];
         tableTrackTitle.textContent = songs[i]["Track Title"];
         tableAlbum.textContent = songs[i]["Album"];
@@ -92,9 +92,10 @@ function upvoteSongs(songPosition){
     var songPosition = songPosition;
     
     var voteCount = document.getElementById("Position" + songPosition)
-    voteCount.value ++;
+    voteCount.innerHTML++;
     console.log(voteCount.value);
-
+    location.reload(true);
+    window.stop();
 
 
 };
